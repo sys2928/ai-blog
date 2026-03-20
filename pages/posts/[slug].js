@@ -1,4 +1,3 @@
-// pages/posts/[slug].js
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { getAllSlugs, getPostBySlug } from '../../lib/posts'
@@ -6,11 +5,8 @@ import { getAllSlugs, getPostBySlug } from '../../lib/posts'
 export default function Post({ post }) {
   return (
     <Layout title={`${post.title} | AI툴킷`} description={post.excerpt}>
-      <div className="container">
-        <Link href="/" className="back-link">
-          ← 목록으로
-        </Link>
-
+      <div className="article-wrap">
+        <Link href="/" className="back-link">← 목록으로</Link>
         <article>
           <header className="article-header">
             <span className="article-tag">{post.tag}</span>
@@ -19,11 +15,7 @@ export default function Post({ post }) {
               <span>{post.date}</span>
             </div>
           </header>
-
-          <div
-            className="article-body"
-            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-          />
+          <div className="article-body" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
         </article>
       </div>
     </Layout>

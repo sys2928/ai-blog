@@ -1,32 +1,29 @@
 import Link from 'next/link'
-import Layout from '../components/Layout'
-import { getAllPosts } from '../lib/posts'
+import Layout from '../../components/Layout'
+import { getAllPosts } from '../../lib/posts'
 
-export default function Home({ posts }) {
+export default function PostsIndex({ posts }) {
+  const tags = ['전체', ...new Set(posts.map(p => p.tag))]
   return (
-    <Layout>
-      <section className="hero">
-        <div className="hero-inner">
-          <span className="hero-eyebrow">AI 도구 활용법</span>
-          <h1 className="hero-title">
-            실무에서 바로 쓰는<br />
-            <em>AI 도구 가이드</em>
+    <Layout title="전체 글 | AI툴킷" description="AI 도구 활용법 전체 글 목록">
+      <div className="posts-section" style={{ paddingTop: '3rem' }}>
+        <div style={{ marginBottom: '2rem' }}>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>
+            전체 글
           </h1>
-          <p className="hero-desc">
-            ChatGPT, Claude, Midjourney 등 최신 AI 도구를 쉽고 실용적으로 활용하는 방법을 매주 정리합니다.
+          <p style={{ color: 'var(--muted)', fontSize: '0.9rem', fontWeight: 300 }}>
+            총 {posts.length}개의 글
           </p>
         </div>
-      </section>
 
-      <div className="posts-section">
-        <p className="section-label">최신 글</p>
+        <p className="section-label">모든 글</p>
         <div className="post-grid">
           {posts.map((post, i) => (
             <Link
               key={post.slug}
               href={`/posts/${post.slug}`}
               className="post-card fade-up"
-              style={{ transitionDelay: `${i * 0.06}s` }}
+              style={{ transitionDelay: `${i * 0.04}s` }}
             >
               <div>
                 <span className="post-tag">{post.tag}</span>
@@ -42,7 +39,7 @@ export default function Home({ posts }) {
       <script dangerouslySetInnerHTML={{__html: `
         const obs = new IntersectionObserver(entries => {
           entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.08 });
         document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
       `}} />
     </Layout>

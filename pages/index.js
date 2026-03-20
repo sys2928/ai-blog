@@ -1,59 +1,40 @@
-// pages/admin/index.js
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
+import Link from 'next/link'
+import Layout from '../components/Layout'
+import { getAllPosts } from '../lib/posts'
 
-export default function AdminLogin() {
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const router = useRouter()
-
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-      sessionStorage.setItem('admin', 'true')
-      router.push('/admin/write')
-    } else {
-      setError('비밀번호가 틀렸습니다.')
-    }
-  }
-
+export default function Home({ posts }) {
   return (
-    <>
-      <Head><title>관리자 로그인</title></Head>
-      <div style={{
-        minHeight: '100vh', display: 'flex', alignItems: 'center',
-        justifyContent: 'center', background: '#FAFAF8', fontFamily: 'sans-serif'
-      }}>
-        <div style={{
-          width: '100%', maxWidth: '360px', padding: '2.5rem',
-          background: '#fff', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.08)'
-        }}>
-          <h1 style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: '1.5rem', textAlign: 'center' }}>
-            관리자 로그인
-          </h1>
-          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <input
-              type="password"
-              placeholder="비밀번호 입력"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              style={{
-                padding: '0.75rem 1rem', border: '1px solid rgba(0,0,0,0.12)',
-                borderRadius: '8px', fontSize: '0.95rem', outline: 'none'
-              }}
-            />
-            {error && <p style={{ color: '#EF4444', fontSize: '0.82rem' }}>{error}</p>}
-            <button type="submit" style={{
-              padding: '0.75rem', background: '#2563EB', color: '#fff',
-              border: 'none', borderRadius: '8px', fontSize: '0.95rem',
-              fontWeight: 500, cursor: 'pointer'
-            }}>
-              로그인
-            </button>
-          </form>
-        </div>
+    <Layout>
+      <div className="container">
+        <section className="hero">
+          <span className="hero-tag">AI 도구 활용법</span>
+          <h1 className="hero-title">실무에서 바로 쓰는<br />AI 도구 가이드</h1>
+          <p className="hero-desc">
+            ChatGPT, Midjourney, Notion AI 등 최신 AI 도구를<br />
+            쉽고 실용적으로 활용하는 방법을 정리합니다.
+          </p>
+        </section>
+        <section style={{ paddingBottom: '4rem' }}>
+          <p className="section-title">최신 글</p>
+          <div className="post-grid">
+            {posts.map(post => (
+              <Link key={post.slug} href={`/posts/${post.slug}`} className="post-card">
+                <div>
+                  <span className="post-tag">{post.tag}</span>
+                  <h2 className="post-title">{post.title}</h2>
+                  <p className="post-excerpt">{post.excerpt}</p>
+                </div>
+                <span className="post-meta">{post.date}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
-    </>
+    </Layout>
   )
+}
+
+export async function getStaticProps() {
+  const posts = getAllPosts()
+  return { props: { posts } }
 }

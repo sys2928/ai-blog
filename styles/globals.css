@@ -1,5 +1,5 @@
 /* styles/globals.css — Modern & Sleek Redesign */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -13,7 +13,7 @@
   --line: rgba(255,255,255,0.07);
   --accent: #E8FF57;
   --accent-dim: rgba(232,255,87,0.08);
-  --font-serif: 'Instrument Serif', serif;
+  --font-serif: 'Noto Serif KR', serif;
   --font-sans: 'Noto Sans KR', sans-serif;
   --radius: 12px;
   --max-width: 700px;
@@ -87,7 +87,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 400; line-height: 1.08;
   letter-spacing: -0.03em; margin-bottom: 1.5rem;
 }
-.hero-title em { font-style: italic; color: var(--muted); }
+.hero-title em { font-style: normal; font-weight: 300; color: var(--muted); }
 .hero-desc {
   font-size: 1rem; color: var(--muted);
   line-height: 1.85; max-width: 40ch; font-weight: 300;
@@ -168,7 +168,7 @@ img { max-width: 100%; height: auto; display: block; }
 .article-body blockquote {
   border-left: 2px solid var(--accent); padding: 1rem 1.5rem; margin: 2rem 0;
   background: var(--accent-dim); border-radius: 0 var(--radius) var(--radius) 0;
-  color: var(--fg); font-style: italic;
+  color: var(--fg); font-style: normal; font-weight: 300;
 }
 .article-body pre {
   background: var(--surface2); border: 1px solid var(--line);

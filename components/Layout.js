@@ -13,6 +13,7 @@ export default function Layout({ children, title = 'AI원샷 — AI 도구 활�
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
+<meta name="google-site-verification" content="5R8zyPBv1lLC_H49Mr72LMFLN0Po0ROABawBNqTalIc" />
       </Head>
       <header>
         <nav className="nav">

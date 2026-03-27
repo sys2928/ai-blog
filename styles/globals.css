@@ -254,21 +254,14 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--surface2);
 }
 
-/* TABLE MOBILE SCROLL */
-.article-body .table-wrap,
-.article-body table {
-  display: block;
+/* TABLE MOBILE SCROLL — wrapper div */
+.article-body .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
 }
 
-@media (max-width: 640px) {
-  .article-body table {
-    min-width: 500px;
-  }
-  .article-body th,
-  .article-body td {
-    padding: 0.6rem 0.75rem;
-    font-size: 0.82rem;
-  }
+.article-body .table-wrap table {
+  margin: 0;
+  min-width: 500px;
 }

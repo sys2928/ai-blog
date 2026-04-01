@@ -1,11 +1,24 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { getAllPosts } from '../../lib/posts'
 
 export default function PostsIndex({ posts }) {
-  const tags = ['전체', ...new Set(posts.map(p => p.tag))]
+  useEffect(() => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible')
+          obs.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.08 })
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <Layout title="전체 글 | AI툴킷" description="AI 도구 활용법 전체 글 목록">
+    <Layout title="전체 글 | AI원샷" description="AI 도구 활용법 전체 글 목록">
       <div className="posts-section" style={{ paddingTop: '3rem' }}>
         <div style={{ marginBottom: '2rem' }}>
           <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>
@@ -15,7 +28,6 @@ export default function PostsIndex({ posts }) {
             총 {posts.length}개의 글
           </p>
         </div>
-
         <p className="section-label">모든 글</p>
         <div className="post-grid">
           {posts.map((post, i) => (
@@ -35,13 +47,6 @@ export default function PostsIndex({ posts }) {
           ))}
         </div>
       </div>
-
-      <script dangerouslySetInnerHTML={{__html: `
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-      `}} />
     </Layout>
   )
 }

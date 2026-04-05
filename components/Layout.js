@@ -14,6 +14,7 @@ export default function Layout({ children, title = 'AI원샷 — AI 도구 활�
         <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
 <meta name="google-site-verification" content="5R8zyPBv1lLC_H49Mr72LMFLN0Po0ROABawBNqTalIc" />
+<meta name="naver-site-verification" content="14aa1b841d9063a50c4084ba08001635edb06199" />
       </Head>
       <header>
         <nav className="nav">

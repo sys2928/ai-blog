@@ -15,6 +15,13 @@ export default function Layout({ children, title = 'AI원샷 — AI 도구 활�
         <link rel="icon" href="/favicon.ico" />
 <meta name="google-site-verification" content="5R8zyPBv1lLC_H49Mr72LMFLN0Po0ROABawBNqTalIc" />
 <meta name="naver-site-verification" content="14aa1b841d9063a50c4084ba08001635edb06199" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GK5NP5RM19"></script>
+<script dangerouslySetInnerHTML={{__html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GK5NP5RM19');
+`}} />
       </Head>
       <header>
         <nav className="nav">

@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="ko">
       <Head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GK5NP5RM19" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GK5NPSRM19" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -4,7 +4,7 @@ import { getAllSlugs, getPostBySlug } from '../../lib/posts'
 
 export default function Post({ post }) {
   return (
-    <Layout title={`${post.title} | AI툴킷`} description={post.excerpt}>
+    <Layout title={`${post.title} | AI원샷`} description={post.excerpt}>
       <div className="article-wrap">
         <Link href="/" className="back-link">← 목록으로</Link>
         <article>
